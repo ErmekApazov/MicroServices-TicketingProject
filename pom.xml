@@ -5,14 +5,14 @@
 
     <packaging>pom</packaging>
 
-
-
     <modules>
         <module>app-domain-model</module>
         <module>user-service</module>
         <module>project-service</module>
         <module>task-service</module>
         <module>app-client-management</module>
+        <module>discovery-service</module>
+        <module>gateway-service</module>
     </modules>
 
     <parent>
@@ -33,8 +33,9 @@
         <spring-boot.version>2.3.4.RELEASE</spring-boot.version>
         <modelmapper.version>2.3.9</modelmapper.version>
         <lombok.version>1.18.22</lombok.version>
-        <spring-cloud.version>2.2.6.RELEASE</spring-cloud.version>
+        <spring-cloud.version>  2.2.6.RELEASE</spring-cloud.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <resilience4j.version>2.1.3</resilience4j.version>
     </properties>
 
     <dependencyManagement>
@@ -87,6 +88,43 @@
             </dependency>
 
             <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+                <version>${spring-cloud.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-gateway</artifactId>
+                <version>${spring-cloud.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+                <version>${spring-cloud.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+                <version>${resilience4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-aop</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-test</artifactId>
                 <version>${spring-boot.version}</version>
@@ -106,7 +144,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
 
     <build>
         <plugins>
